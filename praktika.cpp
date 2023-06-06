@@ -130,19 +130,16 @@ int main()
     {
         Mt += t[i];
         Mz += z[i];
-        if (i == n - 1) 
-        {
-            Mt /= n;
-            Mz /= n;
-        }
     }
+    Mt /= n;
+    Mz /= n;
     for (int i = 0; i < n; i++) 
     {
-        ch += (t[i] - Mt) * (z[i] - Mz);
-        zn1 += (t[i] - Mt) * (t[i] - Mt);
-        zn2 += (z[i] - Mz) * (z[i] - Mz);
-        if (i == n - 1) k = ch / sqrt(zn1 * zn2);
+        ch += pow((t[i] - Mt), 2);
+        zn1 += pow((t[i] - Mt), 2);
+        zn2 += pow((z[i] - Mz), 2);
     }
+    k = ch / sqrt(zn1 * zn2);
     cout << "Коэффициент корреляции: r=" << k << endl;
     gp.plotArrayPar(9, t, z, 3, 2, 1, "z(t)");
     gp.plotArrayPar(9, t, z1, 3, 2, 6, "z1");
